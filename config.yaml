@@ -1,0 +1,12 @@
+models:
+  haarcascade: models/haarcascade_frontalface_default.xml
+  trainer: data/training/Trainner.yml
+
+paths:
+  database: data/student_details/StudentDetails.csv
+  training_images_dir: data/training_images
+  attendance_dir: data/attendance
+  output_dir: output
+
+camera:
+  source: 0

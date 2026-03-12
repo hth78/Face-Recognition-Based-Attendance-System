@@ -65,6 +65,52 @@ AutoMail Window: This window allows the admin to mail the attendance report to t
   <img src="https://user-images.githubusercontent.com/58062535/176115710-02b34564-01db-465f-abd6-2c162aec4c11.png"/>
 </p>
 
+## Centralized Configuration
+
+The project now supports centralized configuration via `attendance_system/config.py`, loading values in this order:
+
+1. Built-in defaults (portable Linux/Windows relative paths)
+2. `config.yaml`
+3. Environment variables from `.env` or the shell
+
+### Required configuration keys
+
+The following keys must be present and point to existing files/directories at startup:
+
+- `models.haarcascade` (file)
+- `models.trainer` (file)
+- `paths.database` (file)
+- `paths.training_images_dir` (directory)
+- `paths.attendance_dir` (directory)
+- `paths.output_dir` (directory)
+- `camera.source` (integer camera index like `0` or a stream URL/device path)
+
+### Files
+
+- `config.yaml`: main path + camera settings
+- `.env`: optional overrides (see `.env.example`)
+
+### Environment variable overrides
+
+- `FRAS_MODEL_HAARCASCADE`
+- `FRAS_MODEL_TRAINER`
+- `FRAS_DB_PATH`
+- `FRAS_TRAINING_IMAGES_DIR`
+- `FRAS_ATTENDANCE_DIR`
+- `FRAS_OUTPUT_DIR`
+- `FRAS_CAMERA_SOURCE`
+
+### Example usage
+
+```python
+from attendance_system.config import load_config
+
+config = load_config()  # validates required files/dirs at startup
+print(config.models.haarcascade)
+print(config.paths.database)
+print(config.camera.source)
+```
+
 ## Team Members
 [Riya Negi](https://github.com/riyanegi1211)
 

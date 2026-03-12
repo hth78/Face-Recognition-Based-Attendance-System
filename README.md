@@ -37,8 +37,9 @@ Facial recognition is becoming more prominent in our society. It has made major 
 * yagmail
 * CSV
 ### Facial Recognition Algorithms
-* Haar Cascade
-* LBPH (Local Binary Pattern Histogram)
+* SCRFD / RetinaFace-style detection via InsightFace
+* ArcFace embeddings with cosine-similarity matching
+* Legacy LBPH/Haar kept only as an optional compatibility adapter
 
 ## Flowchart of the project
 <p align="center">
@@ -69,3 +70,14 @@ AutoMail Window: This window allows the admin to mail the attendance report to t
 [Riya Negi](https://github.com/riyanegi1211)
 
 [Mohak Kala](https://github.com/MohakKala07)
+
+
+## Python package layout
+
+Core notebook logic has been modularized into `attendance_system/`:
+
+- `attendance_system/vision/detector.py`: modern face detection wrapper (InsightFace/SCRFD).
+- `attendance_system/vision/embedder.py`: modern face embedding wrapper (ArcFace via InsightFace).
+- `attendance_system/vision/matcher.py`: cosine-similarity matcher with configurable threshold.
+- `attendance_system/legacy/lbph_adapter.py`: rollback-only compatibility adapter for LBPH/Haar.
+- `config.yaml`: detector/embedder/matcher configuration (model names, detector size, threshold).

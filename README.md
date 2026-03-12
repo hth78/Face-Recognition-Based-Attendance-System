@@ -69,3 +69,27 @@ AutoMail Window: This window allows the admin to mail the attendance report to t
 [Riya Negi](https://github.com/riyanegi1211)
 
 [Mohak Kala](https://github.com/MohakKala07)
+
+## Stream Layer (Production-Oriented)
+
+A modular stream layer is available in `attendance_system/stream/source.py` with:
+
+- webcam index, file path, and RTSP/HTTP stream input support
+- retry/reconnect flow for dropped network CCTV feeds
+- frame sampling (`--target-fps`) to bound recognition load
+- asynchronous bounded frame queue (`--buffer-size`) that drops stale frames to stay real-time
+- per-person cooldown tracker (`attendance_system/attendance/cooldown.py`) to suppress duplicate attendance events
+
+### CLI options
+
+Use `attendance_system/cli.py`:
+
+```bash
+python -m attendance_system.cli \
+  --camera-source rtsp://username:password@camera-ip:554/stream1 \
+  --target-fps 5 \
+  --buffer-size 64 \
+  --reconnect-attempts 10 \
+  --reconnect-backoff-seconds 1.5 \
+  --cooldown-seconds 30
+```

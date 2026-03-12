@@ -65,6 +65,17 @@ AutoMail Window: This window allows the admin to mail the attendance report to t
   <img src="https://user-images.githubusercontent.com/58062535/176115710-02b34564-01db-465f-abd6-2c162aec4c11.png"/>
 </p>
 
+
+## Script-first app layout
+The production workflow now lives in Python modules under `attendance_system/` with a CLI entrypoint in `main.py`.
+Use notebooks as demos/exploration only, and run real operations with:
+
+```bash
+python main.py enroll --person-id 1 --name Alice --cascade /path/to/haarcascade_frontalface_default.xml
+python main.py recognize --cascade /path/to/haarcascade_frontalface_default.xml
+python main.py report
+```
+
 ## Team Members
 [Riya Negi](https://github.com/riyanegi1211)
 

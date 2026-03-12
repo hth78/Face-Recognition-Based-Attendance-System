@@ -1,0 +1,13 @@
+detector:
+  provider: insightface
+  model_name: buffalo_l
+  det_size: [640, 640]
+  ctx_id: -1
+
+embedder:
+  provider: insightface
+  model_name: arcface_r100_v1
+  ctx_id: -1
+
+matcher:
+  cosine_threshold: 0.4

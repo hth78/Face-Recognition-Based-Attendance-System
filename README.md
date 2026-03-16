@@ -66,6 +66,35 @@ AutoMail Window: This window allows the admin to mail the attendance report to t
   <img src="https://user-images.githubusercontent.com/58062535/176115710-02b34564-01db-465f-abd6-2c162aec4c11.png"/>
 </p>
 
+
+## Secure authentication setup
+This project no longer stores SMTP/IMAP or admin credentials in code. Configure secrets before running notebook cells that initialize email/authentication.
+
+### Required environment variables
+- `FRAS_EMAIL_USERNAME`: SMTP/IMAP username (for example, your mailbox address).
+- `FRAS_EMAIL_PASSWORD`: SMTP/IMAP password or app password.
+- `FRAS_ADMIN_USERNAME`: Username required by the admin login window.
+- `FRAS_ADMIN_PASSWORD`: Password required by the admin login window.
+
+### Optional mail host overrides
+- `FRAS_IMAP_HOST` (default: `imap.gmail.com`)
+- `FRAS_IMAP_PORT` (default: `993`)
+- `FRAS_SMTP_HOST` (default: `smtp.gmail.com`)
+- `FRAS_SMTP_PORT` (default: `587`)
+
+### Quick setup example
+```bash
+export FRAS_EMAIL_USERNAME="your-mailbox@example.com"
+export FRAS_EMAIL_PASSWORD="your-app-password"
+export FRAS_ADMIN_USERNAME="your-admin-username"
+export FRAS_ADMIN_PASSWORD="strong-admin-password"
+```
+
+You can also integrate a secret manager by passing a provider callback to `security_config.load_email_credentials()` / `load_admin_credentials()`.
+
+### Credential rotation guidance
+Credentials that were previously committed to source control must be treated as compromised. Rotate/revoke them in your mail provider immediately, then update your local environment values.
+
 ## Team Members
 [Riya Negi](https://github.com/riyanegi1211)
 

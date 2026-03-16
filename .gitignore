@@ -1,0 +1,13 @@
+# Local secrets and environment files
+.env
+.env.*
+!.env.example
+*.env
+secrets.json
+secrets.local.json
+local.settings.json
+*.pem
+*.key
+
+# Notebook checkpoints
+.ipynb_checkpoints/
